@@ -1,0 +1,13 @@
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+/out
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+# Mac
+.DS_Store
