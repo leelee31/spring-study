@@ -11,6 +11,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Map;
+
 class ApplicationContextExtendsFindTest {
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(DiscountPolicyTestConfig.class);
 
@@ -27,6 +29,15 @@ class ApplicationContextExtendsFindTest {
     void findBeanByParentTypeBeanName () {
         DiscountPolicy rateDiscountPolicy = ac.getBean("rateDiscountPolicy", DiscountPolicy.class);
         Assertions.assertInstanceOf(DiscountPolicy.class, rateDiscountPolicy);
+    }
+
+    @Test
+    @DisplayName("Object 클래스, 자식 클래스")
+    void findAllBeanByObjectType () {
+        Map<String, Object> beansOfType = ac.getBeansOfType(Object.class);
+        for (String key : beansOfType.keySet()) {
+            System.out.println("key = " + key);
+        }
     }
 
     @Configuration
