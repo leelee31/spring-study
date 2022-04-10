@@ -21,4 +21,9 @@ public class MemberServiceImpl implements MemberService{
     public Member findMember(Long memberId) {
         return mr.findById(memberId);
     }
+
+    // @Configuration @Bean에서 memberRepository 중복 호출 시 중복 생성되나 test 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }

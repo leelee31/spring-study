@@ -27,4 +27,9 @@ public class OrderServiceImpl implements OrderService{
         int discountPrice = discountPolicy.discount(member, itemPrice);
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
+
+    // @Configuration @Bean에서 memberRepository 중복 호출 시 중복 생성되나 test 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }

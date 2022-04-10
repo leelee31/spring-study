@@ -5,6 +5,8 @@ import com.example.core.member.MemberService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SingletonTest {
     @Test
@@ -30,5 +32,16 @@ public class SingletonTest {
         SingletonServiceTest instance1 = SingletonServiceTest.getInstance();
 
         Assertions.assertSame(instance1, instance);
+    }
+
+    @Test
+    @DisplayName("is spring container singleton?")
+    void springContainerSingletonTest () {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        MemberService memberService = ac.getBean("memberService", MemberService.class);
+        MemberService memberService1 = ac.getBean("memberService", MemberService.class);
+
+        Assertions.assertSame(memberService1, memberService);
     }
 }
